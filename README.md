@@ -1,6 +1,7 @@
 # fwb72adhikari
 My name is Bikash Adhikari.
 <br>
+db Heroku Server: https://db72adhikari.herokuapp.com/
 Heroku Server: https://fwb72adhikari.herokuapp.com/
 Class Sweater
 color(string) price(number) size(string)
