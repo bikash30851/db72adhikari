@@ -12,7 +12,7 @@ exports.Sweater_list = async function(req, res) {
   }
 };
 
-// for a specific flower.
+// for a specific Sweater.
 exports.Sweater_detail = function (req, res) {
   res.send('NOT IMPLEMENTED: Sweater detail: ' + req.params.id);
 };
