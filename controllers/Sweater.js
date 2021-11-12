@@ -54,6 +54,7 @@ exports.Sweater_update_put = async function (req, res) {
 ${JSON.stringify(req.body)}`);
   try {
     let toUpdate = await Sweater.findById(req.params.id);
+    
     // Do updates of properties
     if (req.body.size)
       toUpdate.size = req.body.size;
