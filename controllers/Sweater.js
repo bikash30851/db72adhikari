@@ -2,7 +2,7 @@ var Sweater = require("../models/Sweater");
 
 // List of all Sweater
 exports.Sweater_list = async function(req, res) {
-  res.send("NOT IMPLEMENTED: restaurant list");
+  res.send("NOT IMPLEMENTED: Sweater list");
 };
  
 // // for a specific Sweater.
@@ -20,11 +20,6 @@ exports.Sweater_detail = async function (req, res) {
     res.status(500);
     res.send(`{"error": document for id ${req.params.id} not found`);
   }
-};
-
-// for a specific Sweater.
-exports.Sweater_detail = function (req, res) {
-  res.send('NOT IMPLEMENTED: Sweater detail: ' + req.params.id);
 };
 
 // Handle Sweater create on POST.
@@ -54,8 +49,35 @@ exports.Sweater_delete = function (req, res) {
 };
 
 // Handle Sweater update form on PUT.
-exports.Sweater_update_put = function (req, res) {
-  res.send("NOT IMPLEMENTED: Sweater update PUT" + req.params.id);
+exports.Sweater_update_put = async function (req, res) {
+  console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`);
+  try {
+    let toUpdate = await Sweater.findById(req.params.id);
+    // Do updates of properties
+    if (req.body.size)
+      toUpdate.size = req.body.size;
+    if (req.body.color) toUpdate.color = req.body.color;
+    if (req.body.price) toUpdate.price = req.body.price;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result);
+    res.send(result);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`);
+  }
+};
+
+// List of all Sweater
+exports.Sweater_list = async function (req, res) {
+  try {
+    theSweater = await Sweater.find();
+    res.send(theSweater);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+  }
 };
 
 // VIEWS
