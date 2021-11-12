@@ -2,13 +2,23 @@ var Sweater = require("../models/Sweater");
 
 // List of all Sweater
 exports.Sweater_list = async function(req, res) {
-   try {
-       theSweater = await Sweater.find();
-       res.send(theSweater);
-    } 
-   catch (err) {
-      res.status(500);
-      res.send(`{"error": ${err}}`);
+  res.send("NOT IMPLEMENTED: restaurant list");
+};
+ 
+// // for a specific Sweater.
+// exports.restaurant_detail = function (req, res) {
+//   res.send("NOT IMPLEMENTED: Sweater detail: " + req.params.id);
+// };
+
+exports.Sweater_detail = async function (req, res) {
+  console.log("detail" + req.params.id);
+  try {
+    result = await Sweater.findById(req.params.id);
+    console.log(result);
+    res.send(result);
+  } catch (error) {
+    res.status(500);
+    res.send(`{"error": document for id ${req.params.id} not found`);
   }
 };
 
