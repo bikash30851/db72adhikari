@@ -17,7 +17,7 @@ router.get("/detail", Sweater_controlers.Sweater_view_one_Page);
 router.get("/create", Sweater_controlers.Sweater_create_Page);
 
 /* GET update Sweater page */
-//router.get("/update", Sweater_controlers.Sweater_update_Page);
+router.get("/update", Sweater_controlers.Sweater_update_Page);
 
 /* GET delete Sweater page */
 //router.get("/delete", Sweater_controlers.Sweater_delete_Page);
