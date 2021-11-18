@@ -44,10 +44,17 @@ exports.Sweater_create_post = async function (req, res) {
 };
 
 // Handle Sweater delete form on DELETE.
-exports.Sweater_delete = function (req, res) {
-  res.send("NOT IMPLEMENTED: Sweater delete DELETE " + req.params.id);
-};
-
+exports.Sweater_delete = async function(req, res) {
+  console.log("delete " + req.params.id)
+  try {
+  result = await Sweater.findByIdAndDelete( req.params.id)
+  console.log("Removed " + result)
+  res.send(result)
+  } catch (err) {
+  res.status(500)
+  res.send(`{"error": Error deleting ${err}}`);
+  }
+  };
 // Handle Sweater update form on PUT.
 exports.Sweater_update_put = async function (req, res) {
   console.log(`update on id ${req.params.id} with body 
