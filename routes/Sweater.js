@@ -20,6 +20,6 @@ router.get("/create", Sweater_controlers.Sweater_create_Page);
 router.get("/update", Sweater_controlers.Sweater_update_Page);
 
 /* GET delete Sweater page */
-//router.get("/delete", Sweater_controlers.Sweater_delete_Page);
+router.get("/delete", Sweater_controlers.Sweater_delete_Page);
 
 module.exports = router;

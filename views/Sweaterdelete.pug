@@ -1,0 +1,47 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let Sweaterid = toShow._id 
+    - let size = toShow.size 
+    - let Sweatercolor = toShow.color 
+    - let Sweaterprice = toShow.price 
+    - let actionid = "/resource/Sweater/" + Sweaterid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='SweaterAttr mr-3') Sweater ID is: #{Sweaterid}  
+        div(class='SweaterAttr mr-3') Sweater Type is: #{size}
+        div(class='SweaterAttr mr-3') color is:  #{Sweatercolor} 
+        div(class='SweaterAttr mr-3') price is:  #{Sweaterprice}
+        
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-info m-3" onclick="window.location.href='/Sweater'") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the Sweater collection 
+      window.location.href='/Sweater' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/Sweater' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    }
