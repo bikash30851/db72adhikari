@@ -1,0 +1,17 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Sweaterid = toShow._id 
+  - let size = toShow.size 
+  - let color  = toShow.color  
+  - let price  = toShow.price
+  div 
+    div.row 
+      div(class='SweaterAttr mr-3') Sweater ID is:  #{Sweaterid} 
+      div(class='SweaterAttr mr-3') Sweater Type is:   #{size} 
+      div(class='SweaterAttr mr-3') color is:   #{color} 
+      div(class='SweaterAttr mr-3') price is:   #{price}
+
+    button(class="btn btn-warning m-3" onclick="window.location.href='/Sweater'") Cancel

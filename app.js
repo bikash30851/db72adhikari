@@ -36,14 +36,14 @@ async function recreateDB() {
   });
   let instance2 = new Sweater({
     size: "Medium", color: "Red",
-    cost: 12});
+    price: 12});
   instance2.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Second object saved");
   });
   let instance3 = new Sweater({
     size: "Large", color: "Green",
-    cost: 18});
+    price: 18});
   instance3.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Third object saved");

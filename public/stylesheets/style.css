@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.SweaterAttr {
+  background-color: rgb(17, 255, 69);
+  width: 120px;
+  }
