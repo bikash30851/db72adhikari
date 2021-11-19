@@ -2,44 +2,48 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let Sweaterid = toShow._id 
-  - let size = toShow.size 
-  - let Sweatercolor = toShow.color
-  - let Sweaterprice = toShow.price 
-   
-  div.row(class='mb-4') 
-    div.mr-1 ID is 
-    div #{Sweaterid} 
-  - let actionid = "/resource/Sweater/" + Sweaterid 
-  form(id='SweaterForm', action= actionid, method="PUT") 
-    div.form-group 
-        label.SweaterAttr(for='size') Sweater size 
-        input#size(type='text', name='size', value= size ) 
-    div.form-group 
-        label.SweaterAttr(for='color') Sweater color  
-        input#color(type='text', name='color', value= Sweatercolor ) 
-    div.form-group 
-        label.SweaterAttr(for='price') Sweater price 
-        input#price(type='number', name='price', value= Sweaterprice ) 
-    input(class="btn btn-success m-4" type="submit") 
 
-    button(class="btn btn-info m-4" onclick="window.location.href='/Sweater'") Cancel 
+  if (toShow == null) 
+    h2 No instance to Update     
+  else
  
-  script. 
-    document.forms['SweaterForm'].addEventListener('submit', (event) => { 
-      event.preventDefault(); 
-      // TODO do something here to show user that form is being submitted 
-      fetch(event.target.action, { 
-        method: 'PUT', 
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
-      }).then((resp) => { 
-        return resp.json(); // or resp.text() or whatever the server sends 
-      }).then((body) => { 
-        alert("Update succeded") 
-        // TODO handle body 
-      }).catch((error) => { 
-        // TODO handle error 
-        alert("Update failed " + error ) 
-      }); 
-    });
+    - let Sweaterid = toShow._id 
+    - let size = toShow.size 
+    - let Sweatercolor = toShow.color
+    - let Sweaterprice = toShow.price 
+    
+    div.row(class='mb-2') 
+      div.mr-1 ID is 
+      div #{Sweaterid} 
+    - let actionid = "/resource/Sweater/" + Sweaterid 
+    form(id='SweaterForm', action= actionid, method="PUT") 
+      div.form-group 
+          label.SweaterAttr(for='size') Sweater type 
+          input#size(type='text', name='size', value= size ) 
+      div.form-group 
+          label.SweaterAttr(for='color') Sweater color  
+          input#color(type='text', name='color', value= Sweatercolor ) 
+      div.form-group 
+          label.SweaterAttr(for='price') Sweater price 
+          input#price(type='number', name='price', value= Sweaterprice ) 
+      input(type="submit") 
+
+      button(class="btn btn-dark m-2" onclick="window.location.href='/Sweater'") Cancel 
+  
+    script. 
+      document.forms['SweaterForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+          method: 'PUT', 
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+          return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+          alert("Update succeded") 
+          // TODO handle body 
+        }).catch((error) => { 
+          // TODO handle error 
+          alert("Update failed " + error ) 
+        }); 
+      });

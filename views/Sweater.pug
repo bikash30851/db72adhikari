@@ -3,6 +3,18 @@ extends layout
 block content
   h1= title
   - let image_names = results
+  - let items = results
+  div(class="container-fluid")
+   div(class="row m-1")
+    each item in Sweater
+     - let destination = `dispatch(\"/Sweaters/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") item #{item.size}(#{item.color}) is #{item.price}
+      button.btn( class="btn-success ml-1", onclick= destination) Update
+     script.
+        function dispatch(path){
+        window.location.href=path
+        }
+
     table(class="table table-warning table-bordered")
         thead
             tr 
