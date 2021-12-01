@@ -4,21 +4,33 @@ block content
   h1= title
   - let image_names = results
   - let items = results
-  div(class="container-fluid")
+   - let destinationcreate = `dispatchCreate(\"/Sweater/create\")`
+   button.btn( class="btn-warning ml-1", onclick= destinationcreate) Create
+ 
    div(class="row m-1")
     each item in image_names
-     - let destination = `dispatch(\"/Sweaters/update?id=${item._id}\")`
-      div(class="row-sm-2", class="m-1") item #{item.size}(#{item.color}) is #{item.price}
-      button.btn( class="btn-success ml-1", onclick= destination) Update
+     - let destination = `dispatch(\"/Sweater/update?id=${item._id}\")`
+     - let destinationdetail = `dispatch(\"/Sweater/detail?id=${item._id}\")`
+     - let destinationdelete = `dispatchDelete(\"/Sweater/delete?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") item #{item.Sweater_type}(#{item.color}) is #{item.price}
+      button.btn( class="btn-small btn-success ml-1", onclick= destination) Update
+      button.btn( class="btn-danger ml-1", onclick= destinationdetail) Detail
+      button.btn( class="btn-primary ml-1", onclick= destinationdelete) Delete
      script.
         function dispatch(path){
         window.location.href=path
         }
+        function dispatchCreate(path){
+        window.location.href=path
+        }
+        function dispatchDelete(path){
+        window.location.href=path
+        }
 
-    table(class="table table-warning table-bordered")
+    table(class="table table-info table-bordered")
         thead
             tr 
-                th(scope="col") size 
+                th(scope="col") size
                 th(scope="col") color 
                 th(scope="col") price
         tbody        

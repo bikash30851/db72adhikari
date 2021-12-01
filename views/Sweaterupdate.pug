@@ -8,7 +8,7 @@ block content
   else
  
     - let Sweaterid = toShow._id 
-    - let Sweater_type = toShow.Sweater_type 
+    - let size = toShow.size 
     - let Sweatersize = toShow.size
     - let Sweaterprice = toShow.price 
     
@@ -18,8 +18,8 @@ block content
     - let actionid = "/resource/Sweater/" + Sweaterid 
     form(id='SweaterForm', action= actionid, method="PUT") 
       div.form-group 
-          label.SweaterAttr(for='Sweater_type') Sweater type 
-          input#Sweater_type(type='text', name='Sweater_type', value= Sweater_type ) 
+          label.SweaterAttr(for='size') Sweater type 
+          input#size(type='text', name='size', value= size ) 
       div.form-group 
           label.SweaterAttr(for='size') Sweater size  
           input#size(type='text', name='size', value= Sweatersize ) 
